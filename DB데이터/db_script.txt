@@ -167,7 +167,6 @@ START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
 
--- 데이터 생성용 reservation csv 가져오기
 
 SELECT * FROM RESERVATION r ;
 
