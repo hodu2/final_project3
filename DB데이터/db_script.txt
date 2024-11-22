@@ -158,7 +158,7 @@ CREATE TABLE RESERVATION (
     room_price INT NOT NULL,                      -- 가격
     check_in_date DATE NOT NULL,                  -- 체크인 날짜
     check_out_date DATE NOT NULL,                 -- 체크아웃 날짜
-    resv_status VARCHAR2(20) DEFAULT '' CHECK (resv_status IN ('booked', 'cancel')), -- 예약 상태
+    resv_status VARCHAR2(20) DEFAULT 'booked' CHECK (resv_status IN ('booked', 'cancel')), -- 예약 상태
 
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES USERS(user_id),                        -- USER 테이블 참조
     CONSTRAINT fk_accom_room FOREIGN KEY (accom_id, room_type) 
