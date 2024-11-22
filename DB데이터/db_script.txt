@@ -125,6 +125,7 @@ CREATE TABLE ROOM_TYPE_PRICE (
     CONSTRAINT fk_accommodation FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) ON DELETE CASCADE -- 숙소 참조
 );
 
+-- 데이터 생성용 room_type_price csv 가져오기
 
 SELECT * FROM ROOM_TYPE_PRICE rtp ;
 
@@ -185,6 +186,8 @@ BEGIN
                        FROM PAYMENT p 
                        WHERE p.payment_id = :NEW.payment_id);
 END;
+
+-- 데이터 생성용 reservation csv 가져오기
 
 SELECT * FROM RESERVATION r ;
 
