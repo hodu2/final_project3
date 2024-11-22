@@ -16,7 +16,7 @@ CREATE TABLE ACCOMMODATION (
 CREATE SEQUENCE accom_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
-NOCACHE; -- 시퀀스 캐싱 비활성화
+;
 
 --csv로 데이터 삽입을 위한 단계
 CREATE OR REPLACE TRIGGER trg_accom_id
@@ -46,7 +46,6 @@ CREATE TABLE ACCOMMODATION_IMAGE (
 CREATE SEQUENCE accom_image_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
-NOCACHE; -- 캐싱 비활성화
 
 -- csv로 데이터 삽입을 위한 단계
 CREATE OR REPLACE TRIGGER trg_accom_image_id
@@ -76,7 +75,6 @@ CREATE TABLE AMENITY (
 CREATE SEQUENCE amenity_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
-NOCACHE; -- 캐싱 비활성화 (즉시 저장)
 
 -- csv로 데이터 삽입을 위한 단계
 CREATE OR REPLACE TRIGGER trg_amenity_id
@@ -103,14 +101,10 @@ CREATE TABLE ACCOMMODATION_AMENITY (
     CONSTRAINT fk_amenity FOREIGN KEY (amenity_id) REFERENCES AMENITY(amenity_id) ON DELETE CASCADE  -- 부대시설 테이블 참조
 );
 
+-- 데이터 인서트용 csv 가져오기 
 
 SELECT * FROM ACCOMMODATION_AMENITY aa ;
 
-SELECT accom_id, COUNT(amenity_id) AS cnt
-FROM ACCOMMODATION_AMENITY
-GROUP BY accom_id
-ORDER BY cnt
-;
 
 --------------------ROOM_TYPE_PRICE 테이블 -----------------------------
 
@@ -125,7 +119,7 @@ CREATE TABLE ROOM_TYPE_PRICE (
     CONSTRAINT fk_accommodation FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) ON DELETE CASCADE -- 숙소 참조
 );
 
--- 데이터 생성용 room_type_price csv 가져오기
+-- 데이터 인서트용 room_type_price csv 가져오기
 
 SELECT * FROM ROOM_TYPE_PRICE rtp ;
 
@@ -144,7 +138,7 @@ CREATE TABLE USERS (
 CREATE SEQUENCE user_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
-NOCACHE; -- 캐싱 없이 생성
+; -- 캐싱 없이 생성
 
 SELECT * FROM USERS u;
 
@@ -164,6 +158,12 @@ CREATE TABLE RESERVATION (
     CONSTRAINT fk_accom_room FOREIGN KEY (accom_id, room_type) 
         REFERENCES ROOM_TYPE_PRICE(accom_id, room_type)                                          -- 복합 외래 키 참조
 );
+
+--예약 ID 시퀀스 생성
+CREATE SEQUENCE resv_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
 
 -- 데이터 생성용 reservation csv 가져오기
 
@@ -186,6 +186,12 @@ CREATE TABLE REVIEW (
     CONSTRAINT fk_review_accom FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id)
 );
 
+--리뷰 ID 시퀀스 생성
+CREATE SEQUENCE review_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
 
 
 SELECT * FROM REVIEW r ;
@@ -200,6 +206,13 @@ CREATE TABLE REVIEW_IMAGE (
     
     CONSTRAINT fk_review FOREIGN KEY (review_id) REFERENCES REVIEW(review_id)
 );
+
+--리뷰이미지 ID 시퀀스 생성
+CREATE SEQUENCE review_image_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
 
 SELECT * FROM REVIEW_IMAGE ri ;
 
@@ -227,6 +240,12 @@ CREATE TABLE PAYMENT (
 
     CONSTRAINT fk_payment_resv FOREIGN KEY (resv_id) REFERENCES RESERVATION(resv_id) -- RESERVATION 테이블 참조
 );
+
+-- payment ID 시퀀스 생성
+CREATE SEQUENCE payment_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
 
 SELECT * FROM PAYMENT p ;
 
@@ -282,7 +301,6 @@ SELECT * FROM USERS u ;
 SELECT * FROM WISHLIST w ;
 SELECT * FROM REVIEW r;
 SELECT * FROM REVIEW_IMAGE ri ;
-
 
 
 
