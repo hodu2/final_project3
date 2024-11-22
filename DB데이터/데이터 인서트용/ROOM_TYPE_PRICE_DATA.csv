@@ -1,0 +1,275 @@
+"ACCOM_ID","ROOM_TYPE","ROOM_PRICE","MAX_GUESTS"
+1,standard,56600,2
+1,double,95600,4
+1,deluxe,140700,6
+1,luxury suite,193600,8
+2,standard,66200,2
+2,double,87800,4
+2,deluxe,141300,6
+2,luxury suite,157700,8
+3,standard,56800,2
+3,double,81500,4
+3,deluxe,121400,6
+3,luxury suite,159800,8
+4,standard,62200,2
+4,double,86400,4
+4,deluxe,127300,6
+4,luxury suite,155500,8
+5,standard,68500,2
+5,double,92200,4
+5,deluxe,143700,6
+5,luxury suite,182000,8
+6,none,36800,10
+7,standard,58700,2
+7,double,97900,4
+7,deluxe,147800,6
+7,luxury suite,167700,8
+8,none,44400,10
+9,none,38800,10
+10,standard,62400,2
+10,double,84100,4
+10,deluxe,144500,6
+10,luxury suite,183300,8
+11,double,99500,4
+11,deluxe,139200,6
+12,double,85900,4
+12,deluxe,126200,6
+13,double,82900,4
+13,deluxe,128100,6
+14,double,96700,4
+14,deluxe,135700,6
+15,double,84300,4
+15,deluxe,123300,6
+16,standard,50500,2
+16,double,95700,4
+16,deluxe,132200,6
+16,luxury suite,164600,8
+17,double,90200,4
+17,deluxe,138600,6
+18,double,80700,4
+18,deluxe,123200,6
+19,double,84500,4
+19,deluxe,147600,6
+20,double,88400,4
+20,deluxe,125800,6
+21,double,86200,4
+21,deluxe,138900,6
+22,double,93700,4
+22,deluxe,135000,6
+23,standard,52600,2
+23,double,89800,4
+23,deluxe,120400,6
+23,luxury suite,160200,8
+24,standard,57500,2
+24,double,82600,4
+24,deluxe,149400,6
+24,luxury suite,168400,8
+25,double,85100,4
+25,deluxe,130200,6
+26,double,97600,4
+26,deluxe,124600,6
+27,double,95300,4
+27,deluxe,129800,6
+28,double,80700,4
+28,deluxe,139100,6
+29,double,91500,4
+29,deluxe,121400,6
+30,standard,62600,2
+30,double,98900,4
+30,deluxe,135400,6
+30,luxury suite,198000,8
+31,double,89200,4
+31,deluxe,148300,6
+32,double,87200,4
+32,deluxe,121100,6
+33,none,38000,10
+34,none,32500,10
+35,double,85900,4
+35,deluxe,139800,6
+36,double,82800,4
+36,deluxe,132700,6
+37,none,43900,10
+38,double,83200,4
+38,deluxe,134200,6
+39,double,84200,4
+39,deluxe,139600,6
+40,double,83900,4
+40,deluxe,134300,6
+41,standard,55500,2
+41,double,82500,4
+41,deluxe,128600,6
+41,luxury suite,172300,8
+42,standard,55600,2
+42,double,98900,4
+42,deluxe,122000,6
+42,luxury suite,187100,8
+43,double,96000,4
+43,deluxe,149000,6
+44,standard,51000,2
+44,double,82800,4
+44,deluxe,144700,6
+44,luxury suite,179400,8
+45,double,82900,4
+45,deluxe,133300,6
+46,standard,59800,2
+46,double,90500,4
+46,deluxe,132400,6
+46,luxury suite,166500,8
+47,standard,63400,2
+47,double,95800,4
+47,deluxe,123600,6
+47,luxury suite,189600,8
+48,standard,68900,2
+48,double,90000,4
+48,deluxe,130700,6
+48,luxury suite,168200,8
+49,standard,58400,2
+49,double,90500,4
+49,deluxe,135400,6
+49,luxury suite,195600,8
+50,standard,64100,2
+50,double,86700,4
+50,deluxe,122300,6
+50,luxury suite,161300,8
+51,double,89200,4
+51,deluxe,120800,6
+52,double,84000,4
+52,deluxe,142300,6
+53,standard,56600,2
+53,double,81700,4
+53,deluxe,136100,6
+53,luxury suite,197500,8
+54,standard,67700,2
+54,double,96100,4
+54,deluxe,137500,6
+54,luxury suite,195700,8
+55,double,84400,4
+55,deluxe,137100,6
+56,double,96100,4
+56,deluxe,146400,6
+57,none,38800,10
+58,none,36300,10
+59,standard,55400,2
+59,double,84500,4
+59,deluxe,138700,6
+59,luxury suite,182200,8
+60,double,96200,4
+60,deluxe,141000,6
+61,standard,59400,2
+61,double,91600,4
+61,deluxe,139600,6
+61,luxury suite,175300,8
+62,standard,56000,2
+62,double,82500,4
+62,deluxe,131000,6
+62,luxury suite,164200,8
+63,standard,62300,2
+63,double,86900,4
+63,deluxe,125600,6
+63,luxury suite,191000,8
+64,standard,62200,2
+64,double,99000,4
+64,deluxe,128400,6
+64,luxury suite,177600,8
+65,standard,61800,2
+65,double,94000,4
+65,deluxe,141200,6
+65,luxury suite,158400,8
+66,none,31400,10
+67,standard,53200,2
+67,double,84900,4
+67,deluxe,145800,6
+67,luxury suite,191900,8
+68,standard,65600,2
+68,double,82700,4
+68,deluxe,129800,6
+68,luxury suite,198900,8
+69,standard,67800,2
+69,double,98500,4
+69,deluxe,147900,6
+69,luxury suite,180200,8
+70,standard,67100,2
+70,double,85000,4
+70,deluxe,139000,6
+70,luxury suite,160600,8
+71,standard,68100,2
+71,double,84700,4
+71,deluxe,134900,6
+71,luxury suite,157400,8
+72,standard,65400,2
+72,double,94700,4
+72,deluxe,145000,6
+72,luxury suite,176100,8
+73,standard,51700,2
+73,double,88700,4
+73,deluxe,120900,6
+73,luxury suite,150900,8
+74,double,99500,4
+74,deluxe,131700,6
+75,double,93900,4
+75,deluxe,144100,6
+76,standard,51100,2
+76,double,91200,4
+76,deluxe,129200,6
+76,luxury suite,168000,8
+77,double,95800,4
+77,deluxe,145000,6
+78,standard,55600,2
+78,double,80300,4
+78,deluxe,128700,6
+78,luxury suite,160700,8
+79,standard,54400,2
+79,double,83900,4
+79,deluxe,133100,6
+79,luxury suite,172600,8
+80,standard,66500,2
+80,double,97100,4
+80,deluxe,135400,6
+80,luxury suite,152500,8
+81,none,44800,10
+82,none,39400,10
+83,none,38800,10
+84,none,50000,10
+85,double,91800,4
+85,deluxe,127300,6
+86,none,43600,10
+87,standard,67800,2
+87,double,97100,4
+87,deluxe,142700,6
+87,luxury suite,176300,8
+88,double,80400,4
+88,deluxe,143400,6
+89,standard,68900,2
+89,double,89700,4
+89,deluxe,127100,6
+89,luxury suite,198200,8
+90,standard,62800,2
+90,double,81700,4
+90,deluxe,147400,6
+90,luxury suite,161300,8
+91,double,83900,4
+91,deluxe,133400,6
+92,double,94300,4
+92,deluxe,130300,6
+93,standard,54100,2
+93,double,83700,4
+93,deluxe,139700,6
+93,luxury suite,168900,8
+94,standard,61900,2
+94,double,89700,4
+94,deluxe,143100,6
+94,luxury suite,174400,8
+95,double,88300,4
+95,deluxe,131700,6
+96,double,85700,4
+96,deluxe,121500,6
+97,standard,64700,2
+97,double,89000,4
+97,deluxe,124900,6
+97,luxury suite,155800,8
+98,double,86300,4
+98,deluxe,145700,6
+99,double,81200,4
+99,deluxe,148700,6
+100,double,95500,4
+100,deluxe,133500,6
