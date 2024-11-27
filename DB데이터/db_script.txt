@@ -3,7 +3,7 @@
 CREATE TABLE ACCOMMODATION (
     accom_id INT PRIMARY KEY,                         -- 숙소 ID
     accom_name VARCHAR2(255) NOT NULL,                -- 숙소 이름
-    type VARCHAR2(50) CHECK (type IN ('hotel', 'motel', 'pension', 'resort', 'guesthouse')), -- 숙소 유형
+    type VARCHAR2(50) CHECK (type IN ('HOTEL', 'MOTEL', 'PENSION', 'RESORT', 'GUESTHOUSE')), -- 숙소 유형
     description VARCHAR2(1000),                       -- 숙소 설명
     address VARCHAR2(255),                            -- 상세주소
     latitude NUMBER(9,6),                             -- 위도
@@ -69,7 +69,7 @@ CREATE TABLE AMENITY (
     amenity_id INT PRIMARY KEY,                        -- 부대시설 ID (Primary Key)
     amenity_type VARCHAR2(50) NOT NULL,               -- 부대시설 유형
     amenity_name VARCHAR2(255) NOT NULL,              -- 부대시설 이름
-    CONSTRAINT chk_amenity_type CHECK (amenity_type IN ('room_in', 'room_out', 'additional')) -- 허용된 값만 저장
+    CONSTRAINT chk_amenity_type CHECK (amenity_type IN ('ROOM_IN', 'ROOM_OUT', 'ADDITIONAL')) -- 허용된 값만 저장
 );
 
 --어메니티 ID 시퀀스 생성
@@ -103,10 +103,9 @@ CREATE TABLE ACCOMMODATION_AMENITY (
     CONSTRAINT fk_amenity FOREIGN KEY (amenity_id) REFERENCES AMENITY(amenity_id) ON DELETE CASCADE  -- 부대시설 테이블 참조
 );
 
--- 데이터 인서트용 csv 가져오기 
+-- 11개 ~ 20개 어매니티 포함되어있음
 
 SELECT * FROM ACCOMMODATION_AMENITY aa ;
-
 
 --------------------ROOM_TYPE_PRICE 테이블 -----------------------------
 
@@ -117,11 +116,9 @@ CREATE TABLE ROOM_TYPE_PRICE (
     room_price NUMBER NOT NULL,                    -- 가격
     max_guests NUMBER NOT NULL,                    -- 최대 인원
     PRIMARY KEY (accom_id, room_type),             -- 복합 기본 키
-    CONSTRAINT chk_room_type CHECK (room_type IN ('none', 'standard', 'double', 'deluxe', 'luxury suite')), -- 룸 유형 검증
+    CONSTRAINT chk_room_type CHECK (room_type IN ('NONE', 'STANDARD', 'DOUBLE', 'DELUXE', 'LUXURY_SUITE')), -- 룸 유형 검증
     CONSTRAINT fk_accommodation FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) ON DELETE CASCADE -- 숙소 참조
 );
-
--- 데이터 인서트용 room_type_price csv 가져오기
 
 SELECT * FROM ROOM_TYPE_PRICE rtp ;
 
@@ -151,10 +148,11 @@ CREATE TABLE RESERVATION (
     user_id INT NOT NULL,                         -- 회원 번호 (FK)
     accom_id INT NOT NULL,                        -- 숙소 ID (FK)
     room_type VARCHAR(50) NOT NULL,               -- 룸 유형
+    number_guests INT NOT NULL,					  -- 예약 인원
     room_price INT NOT NULL,                      -- 가격
     check_in_date DATE NOT NULL,                  -- 체크인 날짜
     check_out_date DATE NOT NULL,                 -- 체크아웃 날짜
-    resv_status VARCHAR2(20) DEFAULT 'booked' CHECK (resv_status IN ('booked', 'cancel')), -- 예약 상태
+    resv_status VARCHAR2(20) DEFAULT 'BOOKED' CHECK (resv_status IN ('BOOKED', 'CANCEL')), -- 예약 상태
 
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES USERS(user_id),                        -- USER 테이블 참조
     CONSTRAINT fk_accom_room FOREIGN KEY (accom_id, room_type) 
@@ -166,6 +164,7 @@ CREATE SEQUENCE resv_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
+
 
 
 SELECT * FROM RESERVATION r ;
@@ -213,7 +212,6 @@ CREATE SEQUENCE review_image_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
-
 
 SELECT * FROM REVIEW_IMAGE ri ;
 
@@ -267,7 +265,7 @@ SELECT * FROM PAYMENT_CANCELLATION pc ;
 
 -- 예약취소를 위한 쿼리 1
 UPDATE RESERVATION r
-SET r.resv_status = 'cancel'
+SET r.resv_status = 'CANCEL'
 WHERE EXISTS (
     SELECT 1
     FROM PAYMENT p
@@ -281,7 +279,7 @@ AFTER INSERT ON PAYMENT_CANCELLATION
 FOR EACH ROW
 BEGIN
     UPDATE RESERVATION r
-    SET r.resv_status = 'cancel'
+    SET r.resv_status = 'CANCEL'
     WHERE r.resv_id = (SELECT p.resv_id 
                        FROM PAYMENT p 
                        WHERE p.payment_id = :NEW.payment_id);
