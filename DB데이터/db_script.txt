@@ -235,7 +235,7 @@ CREATE TABLE PAYMENT (
     payment_id INT PRIMARY KEY,            -- 결제 ID (PK)
     resv_id INT NOT NULL,                  -- 예약 ID (FK)
     amount INT NOT NULL,                   -- 결제 금액
-    payment_method VARCHAR2(20) CHECK (payment_method IN ('CARD', 'TRANSFER', 'VIRTUAL_ACCOUNT', 'MOBILE', 'VOUCHER')), -- 결제 방법
+    payment_method VARCHAR2(20) CHECK (payment_method IN ('CARD', 'TRANSFER', 'VIRTUAL_ACCOUNT', 'MOBILE_PHONE', 'CULTURE_GIFT_CERTIFICATE')), -- 결제 방법
     payment_date TIMESTAMP NOT NULL,       -- 결제 일시
 
     CONSTRAINT fk_payment_resv FOREIGN KEY (resv_id) REFERENCES RESERVATION(resv_id) -- RESERVATION 테이블 참조
