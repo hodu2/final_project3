@@ -181,6 +181,7 @@ CREATE TABLE REVIEW (
     rating NUMBER(2,1) CHECK (rating BETWEEN 1 AND 5), -- 평점
     review_text VARCHAR2(1000),               -- 리뷰 내용
     review_date DATE DEFAULT CURRENT_DATE,		-- 리뷰 작성 날짜
+    review_image_path VARCHAR2(255), -- 리뷰 이미지 경로
      
     CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES USERS(user_id),
     CONSTRAINT fk_review_resv FOREIGN KEY (resv_id) REFERENCES RESERVATION(resv_id),
@@ -196,25 +197,6 @@ INCREMENT BY 1 -- 증가 값
 
 
 SELECT * FROM REVIEW r ;
-
-
------------------------------ REVIEW IMAGE 테이블 -------------------------------
-
-CREATE TABLE REVIEW_IMAGE (
-    review_image_id INT PRIMARY KEY,
-    review_id INT NOT NULL,
-    review_image_path VARCHAR2(255),
-    
-    CONSTRAINT fk_review FOREIGN KEY (review_id) REFERENCES REVIEW(review_id)
-);
-
---리뷰이미지 ID 시퀀스 생성
-CREATE SEQUENCE review_image_id_seq
-START WITH 1 -- 시작 값
-INCREMENT BY 1 -- 증가 값
-;
-
-SELECT * FROM REVIEW_IMAGE ri ;
 
 ------------------------------- WISHLIST 테이블 ---------------------------------
 
@@ -300,8 +282,8 @@ SELECT * FROM ROOM_TYPE_PRICE rtp ;
 SELECT * FROM USERS u ;
 SELECT * FROM WISHLIST w ;
 SELECT * FROM REVIEW r;
-SELECT * FROM REVIEW_IMAGE ri ;
 
+++드랍 쿼리문
 
 
 
