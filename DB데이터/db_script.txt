@@ -22,7 +22,8 @@ CREATE TABLE ACCOMMODATION (
     latitude NUMBER(9,6),                             -- 위도
     longitude NUMBER(9,6),                            -- 경도
     ava_dates_start DATE,                             -- 예약 가능 시작 날짜
-    ava_dates_end DATE                                -- 예약 가능 종료 날짜
+    ava_dates_end DATE,                               -- 예약 가능 종료 날짜
+    accom_tel VARCHAR2(50)							  -- 숙소 전화번호	
 );
 
 -- 숙소 ID 시퀀스 생성
