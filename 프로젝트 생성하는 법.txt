@@ -49,19 +49,23 @@ public class CorsConfig implements WebMvcConfigurer {
 
 6. npm install http-proxy-middleware --save
 
-7. frontend/src 에서 setProxy.js 생성 및 아래 코드 붙여넣기
+7. frontend/src 에서 vite.config.js 에서 아래 코드 붙여넣기
 
-const { createProxyMiddleware } = require('http-proxy-middleware');
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-module.exports = function(app) {
-  app.use(
-    '/api',
-    createProxyMiddleware({
-      target: 'http://localhost:9090',
-      changeOrigin: true,
-    })
-  );
-};
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // 경로 수정 필요 시 사용
+      },
+    },
+  },
+});
 
 
 8. frontend/src/App.jsx 내용 지우고 아래 코드 붙여넣기
