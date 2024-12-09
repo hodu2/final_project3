@@ -146,13 +146,48 @@ CREATE TABLE USERS (
     email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(20),
     social_id VARCHAR(255),
-    social_provider VARCHAR(50)
+    social_provider VARCHAR(50),
+    customerKey VARCHAR(50) NOT NULL CHECK (
+        customerKey ~ '^[a-zA-Z0-9\\-_=.@]{2,50}$'
+    )
 );
 
 CREATE SEQUENCE user_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
+
+-- customerKey 트리거 --
+CREATE OR REPLACE FUNCTION generate_customer_key()
+RETURNS TRIGGER AS $$
+DECLARE
+    allowed_chars TEXT := 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_=.@';
+    key_length INT;
+    generated_key TEXT := '';
+BEGIN
+    -- 랜덤 길이 설정 (2자 이상 50자 이하)
+    key_length := trunc(random() * 49 + 2)::INT;
+
+    -- 랜덤 문자열 생성
+    FOR i IN 1..key_length LOOP
+        generated_key := generated_key || substr(allowed_chars, trunc(random() * length(allowed_chars) + 1)::INT, 1);
+    END LOOP;
+
+    -- NEW 레코드의 customerKey에 값 설정
+    NEW.customerKey := generated_key;
+    RETURN NEW;
+END;
+$$
+ LANGUAGE plpgsql;
+-- customerKey 트리거 --
+
+
+-- customerKey 트리거 연결 --
+CREATE TRIGGER set_customer_key
+BEFORE INSERT ON USERS
+FOR EACH ROW
+EXECUTE FUNCTION generate_customer_key();
+-- customerKey 트리거 연결 --
 
 SELECT * FROM USERS u;
 
