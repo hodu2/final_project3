@@ -147,9 +147,6 @@ CREATE TABLE USERS (
     phone VARCHAR(20),
     social_id VARCHAR(255),
     social_provider VARCHAR(50),
-    customerKey VARCHAR(50) NOT NULL CHECK (
-        customerKey ~ '^[a-zA-Z0-9\\-_=.@]{2,50}$'
-    )
 );
 
 CREATE SEQUENCE user_id_seq
