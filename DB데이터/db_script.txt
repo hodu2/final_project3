@@ -259,31 +259,6 @@ CREATE TABLE PAYMENT_CANCELLATION (
 
 SELECT * FROM PAYMENT_CANCELLATION pc ;
 
-
---------------------------------------- 예약 취소 위한 쿼리 ---------------------------------------------------------------------
-
--- 예약취소를 위한 쿼리 1
-UPDATE RESERVATION r
-SET r.resv_status = 'CANCEL'
-WHERE EXISTS (
-    SELECT 1
-    FROM PAYMENT p
-    JOIN PAYMENT_CANCELLATION pc ON p.payment_id = pc.payment_id
-    WHERE p.resv_id = r.resv_id
-);
-
--- 예약취소를 위한 쿼리 2
-CREATE OR REPLACE TRIGGER trg_update_reservation_status
-AFTER INSERT ON PAYMENT_CANCELLATION
-FOR EACH ROW
-BEGIN
-    UPDATE RESERVATION r
-    SET r.resv_status = 'CANCEL'
-    WHERE r.resv_id = (SELECT p.resv_id 
-                       FROM PAYMENT p 
-                       WHERE p.payment_id = :NEW.payment_id);
-END;
-
 --------------------------------------------------- 끝 -------------------------------------------------
 
 
@@ -301,7 +276,10 @@ SELECT * FROM REVIEW r;
 
 ++드랍 쿼리문
 
+ALTER TABLE PAYMENT
+DROP COLUMN payment_method;
 
+DROP TRIGGER trg_update_reservation_status;
 
 
 
