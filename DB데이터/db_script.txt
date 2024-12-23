@@ -1,0 +1,286 @@
+DROP TABLE ACCOMMODATION;
+DROP TABLE ACCOMMODATION_AMENITY;
+DROP TABLE ACCOMMODATION_IMAGE;
+DROP TABLE AMENITY;
+DROP TABLE PAYMENT;
+DROP TABLE PAYMENT_CANCELLATION;
+DROP TABLE RESERVATION;
+DROP TABLE ROOM_TYPE_PRICE;
+DROP TABLE USERS;
+DROP TABLE WISHLIST;
+DROP TABLE REVIEW;
+
+
+-----------------------------ACCOMMODATION 테이블 -----------------------------
+-- ACCOMMODATION 테이블 생성
+CREATE TABLE ACCOMMODATION (
+    accom_id INT PRIMARY KEY,                         -- 숙소 ID
+    accom_name VARCHAR2(255) NOT NULL,                -- 숙소 이름
+    type VARCHAR2(50) CHECK (type IN ('HOTEL', 'MOTEL', 'PENSION', 'RESORT', 'GUESTHOUSE')), -- 숙소 유형
+    description VARCHAR2(1000),                       -- 숙소 설명
+    address VARCHAR2(255),                            -- 상세주소
+    latitude NUMBER(9,6),                             -- 위도
+    longitude NUMBER(9,6),                            -- 경도
+    ava_dates_start DATE,                             -- 예약 가능 시작 날짜
+    ava_dates_end DATE,                               -- 예약 가능 종료 날짜
+    accom_tel VARCHAR2(50)							  -- 숙소 전화번호	
+);
+
+-- 숙소 ID 시퀀스 생성
+CREATE SEQUENCE accom_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+--csv로 데이터 삽입을 위한 단계
+CREATE OR REPLACE TRIGGER trg_accom_id
+BEFORE INSERT ON ACCOMMODATION
+FOR EACH ROW
+BEGIN
+    -- accom_id가 NULL인 경우에만 시퀀스 값을 사용
+    IF :NEW.accom_id IS NULL THEN
+        SELECT accom_id_seq.NEXTVAL INTO :NEW.accom_id FROM DUAL;
+    END IF;
+END;
+
+-- 윗부분 실행 후 숙소테이블 csv 가져오기
+
+SELECT * FROM ACCOMMODATION a ;
+
+-----------------------------ACCOMMODATION_IMAGE 테이블 -----------------------------
+-- ACCOMMODATION_IMAGE 테이블 생성
+CREATE TABLE ACCOMMODATION_IMAGE (
+    accom_image_id INT PRIMARY KEY,
+    accom_id INT NOT NULL,
+    accom_image_path VARCHAR2(1000) NOT NULL,
+    CONSTRAINT fk_accom_image FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id)
+) SEGMENT CREATION IMMEDIATE;
+
+--숙소이미지 ID 시퀀스 생성
+CREATE SEQUENCE accom_image_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+-- csv로 데이터 삽입을 위한 단계
+CREATE OR REPLACE TRIGGER trg_accom_image_id
+BEFORE INSERT ON ACCOMMODATION_IMAGE
+FOR EACH ROW
+BEGIN
+    IF :NEW.accom_image_id IS NULL THEN
+        SELECT accom_image_id_seq.NEXTVAL INTO :NEW.accom_image_id FROM DUAL;
+    END IF;
+END;
+
+-- 윗부분 실행 후 숙소이미지테이블 csv 가져오기
+
+SELECT * FROM ACCOMMODATION_IMAGE ai ;
+
+
+------------------------ AMENITY 테이블 ---------------------------
+--AMENITY 테이블 생성
+CREATE TABLE AMENITY (
+    amenity_id INT PRIMARY KEY,                        -- 부대시설 ID (Primary Key)
+    amenity_type VARCHAR2(50) NOT NULL,               -- 부대시설 유형
+    amenity_name VARCHAR2(255) NOT NULL,              -- 부대시설 이름
+    CONSTRAINT chk_amenity_type CHECK (amenity_type IN ('ROOM_IN', 'ROOM_OUT', 'ADDITIONAL')) -- 허용된 값만 저장
+);
+
+--어메니티 ID 시퀀스 생성
+CREATE SEQUENCE amenity_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+-- csv로 데이터 삽입을 위한 단계
+CREATE OR REPLACE TRIGGER trg_amenity_id
+BEFORE INSERT ON AMENITY
+FOR EACH ROW
+BEGIN
+    IF :NEW.amenity_id IS NULL THEN
+        SELECT amenity_id_seq.NEXTVAL INTO :NEW.amenity_id FROM DUAL;
+    END IF;
+END;
+
+-- 윗부분 실행 후 어메니티테이블 csv 가져오기
+
+SELECT * FROM AMENITY a ;
+
+
+-------------------ACCOMMODATION_AMENITY 테이블 -------------------------------
+--ACCOMMODATION_AMENITY 테이블 생성
+CREATE TABLE ACCOMMODATION_AMENITY (
+    accom_id INT NOT NULL,                           -- 숙소 ID
+    amenity_id INT NOT NULL,                         -- 부대시설 ID
+    PRIMARY KEY (accom_id, amenity_id),              -- 복합 기본 키 설정
+    CONSTRAINT fk_accom FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) ON DELETE CASCADE, -- 숙소 테이블 참조
+    CONSTRAINT fk_amenity FOREIGN KEY (amenity_id) REFERENCES AMENITY(amenity_id) ON DELETE CASCADE  -- 부대시설 테이블 참조
+);
+
+-- 11개 ~ 20개 어매니티 포함되어있음
+
+
+SELECT * FROM ACCOMMODATION_AMENITY aa ;
+
+--------------------ROOM_TYPE_PRICE 테이블 -----------------------------
+
+-- 숙소_타입_가격 테이블 생성, 
+CREATE TABLE ROOM_TYPE_PRICE (
+    accom_id NUMBER NOT NULL,                      -- 숙소 ID
+    room_type VARCHAR2(50) NOT NULL,               -- 룸 유형
+    room_price NUMBER NOT NULL,                    -- 가격
+    max_guests NUMBER NOT NULL,                    -- 최대 인원
+    PRIMARY KEY (accom_id, room_type),             -- 복합 기본 키
+    CONSTRAINT chk_room_type CHECK (room_type IN ('NONE', 'STANDARD', 'DOUBLE', 'DELUXE', 'LUXURY_SUITE')), -- 룸 유형 검증
+    CONSTRAINT fk_accommodation FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) ON DELETE CASCADE -- 숙소 참조
+);
+
+SELECT * FROM ROOM_TYPE_PRICE rtp ;
+
+
+-------------------------------- USER 테이블 ----------------------------
+CREATE TABLE USERS (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    social_id VARCHAR(255),
+    social_provider VARCHAR(50),
+);
+
+CREATE SEQUENCE user_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+SELECT * FROM USERS u;
+
+------------------------------- RESERVATION 테이블 -----------------------
+
+CREATE TABLE RESERVATION (
+    resv_id INT PRIMARY KEY,                      -- 예약 ID (PK)
+    user_id INT NOT NULL,                         -- 회원 번호 (FK)
+    accom_id INT NOT NULL,                        -- 숙소 ID (FK)
+    room_type VARCHAR(50) NOT NULL,               -- 룸 유형
+    number_guests INT NOT NULL,					  -- 예약 인원
+    room_price INT NOT NULL,                      -- 가격
+    check_in_date DATE NOT NULL,                  -- 체크인 날짜
+    check_out_date DATE NOT NULL,                 -- 체크아웃 날짜
+    resv_status VARCHAR2(20) CHECK (resv_status IN ('BOOKED', 'CANCEL')), -- 예약 상태
+
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES USERS(user_id),                        -- USER 테이블 참조
+    CONSTRAINT fk_accom_room FOREIGN KEY (accom_id, room_type) 
+        REFERENCES ROOM_TYPE_PRICE(accom_id, room_type)                                          -- 복합 외래 키 참조
+);
+
+--예약 ID 시퀀스 생성
+CREATE SEQUENCE resv_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+
+
+SELECT * FROM RESERVATION r ;
+
+
+---------------------------- REVIEW 테이블 ----------------------------------
+
+CREATE TABLE REVIEW (
+    review_id INT PRIMARY KEY,                -- 리뷰 ID
+    user_id INT NOT NULL,                     -- 회원 ID (FK)
+    resv_id INT NOT NULL,                              -- 예약 ID (FK)
+    accom_id INT NOT NULL,                             -- 숙소 ID (FK)
+    rating NUMBER(2,1) CHECK (rating BETWEEN 1 AND 5), -- 평점
+    review_text VARCHAR2(1000),               -- 리뷰 내용
+    review_date DATE DEFAULT CURRENT_DATE,		-- 리뷰 작성 날짜
+    review_image_path VARCHAR2(255), -- 리뷰 이미지 경로
+     
+    CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES USERS(user_id),
+    CONSTRAINT fk_review_resv FOREIGN KEY (resv_id) REFERENCES RESERVATION(resv_id),
+    CONSTRAINT fk_review_accom FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id)
+);
+
+--리뷰 ID 시퀀스 생성
+CREATE SEQUENCE review_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+
+
+SELECT * FROM REVIEW r ;
+
+------------------------------- WISHLIST 테이블 ---------------------------------
+
+CREATE TABLE WISHLIST (
+    user_id INT NOT NULL,                          -- 회원 번호 (PK, FK)
+    accom_id INT NOT NULL,                         -- 숙소 ID (PK, FK)
+
+    PRIMARY KEY (user_id, accom_id),               -- 복합 기본 키 설정
+    CONSTRAINT fk_wishlist_user FOREIGN KEY (user_id) REFERENCES USERS(user_id), -- USERS 테이블 참조
+    CONSTRAINT fk_wishlist_accom FOREIGN KEY (accom_id) REFERENCES ACCOMMODATION(accom_id) -- ACCOMMODATION 테이블 참조
+);
+
+SELECT * FROM WISHLIST w ;
+
+------------------------------ PAYMENT 테이블 ---------------------
+
+CREATE TABLE PAYMENT (
+    payment_id INT PRIMARY KEY,            -- 결제 ID (PK)
+    resv_id INT NOT NULL,                  -- 예약 ID (FK)
+    amount INT NOT NULL,                   -- 결제 금액
+    payment_date TIMESTAMP NOT NULL,       -- 결제 일시
+
+    CONSTRAINT fk_payment_resv FOREIGN KEY (resv_id) REFERENCES RESERVATION(resv_id) -- RESERVATION 테이블 참조
+);
+
+-- payment ID 시퀀스 생성
+CREATE SEQUENCE payment_id_seq
+START WITH 1 -- 시작 값
+INCREMENT BY 1 -- 증가 값
+;
+
+SELECT * FROM PAYMENT p ;
+
+
+-------------------------- PAYMENT_CANCELLATION 테이블 -----------------------
+
+CREATE TABLE PAYMENT_CANCELLATION (
+    payment_id INT PRIMARY KEY,                    -- 결제 ID (PK, FK)
+    cancellation_date TIMESTAMP NOT NULL,          -- 취소 일시
+
+    CONSTRAINT fk_payment_cancellation FOREIGN KEY (payment_id) REFERENCES PAYMENT(payment_id) -- PAYMENT 테이블 참조
+);
+
+SELECT * FROM PAYMENT_CANCELLATION pc ;
+
+--------------------------------------------------- 끝 -------------------------------------------------
+
+
+SELECT * FROM ACCOMMODATION a ;
+SELECT * FROM ACCOMMODATION_AMENITY aa ;
+SELECT * FROM ACCOMMODATION_IMAGE ai ;
+SELECT * FROM AMENITY a ;
+SELECT * FROM PAYMENT p ;
+SELECT * FROM PAYMENT_CANCELLATION pc ;
+SELECT * FROM RESERVATION r ;
+SELECT * FROM ROOM_TYPE_PRICE rtp ;
+SELECT * FROM USERS u ;
+SELECT * FROM WISHLIST w ;
+SELECT * FROM REVIEW r;
+
+++드랍 쿼리문
+
+ALTER TABLE PAYMENT
+DROP COLUMN payment_method;
+
+DROP TRIGGER trg_update_reservation_status;
+
+
+
+
+
+
+

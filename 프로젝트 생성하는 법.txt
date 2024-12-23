@@ -1,0 +1,154 @@
+1. 리액트 프로젝트 생성
+  - spring web
+  - jpa
+  - lombok
+
+2. sts에 임포트
+
+3. properties 추가 (서버포트 9090, 한글세팅 등)
+
+# 톰캣 서버 포트 수정
+server.port=9090
+
+# 한글세팅
+server.servlet.encoding.charset=UTF-8
+server.servlet.encoding.enabled=true
+server.servlet.encoding.force=true
+
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+# dbms
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.username=react
+spring.datasource.password=react
+
+# jpa설정
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto = none
+
+
+4. 기본 패키지 내에 CorsConfig 클래스 생성
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+   @Override
+   public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:5173") // 허용할 Origin 설정
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
+    }
+}
+
+
+5. vscode로 src/main 에 frontend 생성
+
+6. npm install http-proxy-middleware --save
+
+7. frontend/src 에서 vite.config.js 에서 아래 코드 붙여넣기
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // 경로 수정 필요 시 사용
+      },
+    },
+  },
+});
+
+
+8. frontend/src/App.jsx 내용 지우고 아래 코드 붙여넣기
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
+
+function App() {
+   const [hello, setHello] = useState('')
+
+    useEffect(() => {
+      axios.get('http://localhost:9090/api/hello')
+        .then(response => setHello(response.data))
+        .catch(error => console.log(error))
+    }, []);
+
+    return (
+        <div>
+            백엔드에서 가져온 데이터입니다 : {hello}
+        </div>
+    );
+}
+
+export default App;
+
+
+9. sts에서 ~~~.web 패키지 생성
+
+10. 패키지 안에 HelloWorldController 생성 및 아래 코드 붙여넣기
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+
+    @GetMapping("/api/hello")
+    public String test() {
+        return "Hello, world!";
+    }
+}
+
+
+11. build.gradle 에 아래 코드 붙여넣기 및 리프레시
+
+def frontendDir = "$projectDir/src/main/frontend"
+
+sourceSets {
+	main {
+		resources { srcDirs = ["$projectDir/src/main/resources"]
+		}
+	}
+}
+
+processResources { dependsOn "copyReactBuildFiles" }
+
+task installReact(type: Exec) {
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "audit", "fix"
+		commandLine 'npm.cmd', 'install' }
+	else {
+		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+	}
+}
+
+task buildReact(type: Exec) {
+	dependsOn "installReact"
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run-script", "build"
+	} else {
+		commandLine "npm", "run-script", "build"
+	}
+}
+
+task copyReactBuildFiles(type: Copy) {
+	dependsOn "buildReact"
+	from "$frontendDir/build"
+	into "$projectDir/src/main/resources/static"
+}
+
+12. sts & vscode 모두 서버 실행

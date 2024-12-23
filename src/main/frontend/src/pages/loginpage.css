@@ -1,0 +1,112 @@
+/* 메인 컨테이너 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 61vh;
+  }
+  
+  /* 로그인 박스 */
+  .login {
+    width: 400px;
+    padding: 30px;
+    text-align: left;
+    margin: 0 auto;
+    border: 1px solid #ccc ;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(143, 143, 143, 0.3);
+  }
+  
+  /* 로고 */
+  .login_logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .login_logo img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  /* 타이틀 */
+  .login_title {
+    display: flex;
+    height: 22px;
+    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  
+  .login_title .strikethrough {
+    background-color: #ebebeb;
+    height: 1px;
+    position: absolute;
+    top: 9px;
+    width: 100%;
+  }
+
+  .login_title .caption {
+    background-color: #fff;
+    color: #858585;
+    padding: 0 8px;
+    z-index: 1;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  /* 버튼 그룹 */
+  .login_btn_group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .login_btn_group button {
+    font-family: 'GmarketSansMedium';
+    display: block;
+    padding: 10px;
+    height: auto; 
+    border: none; 
+    background-color: transparent; 
+    cursor: pointer;
+  }
+  
+  .login_btn_group button img {
+    width: auto; 
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .login_btn_group button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .login_btn_group button:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login_btn_group button:first-child {
+    background-color: #fee500;
+    color: #000;
+  }
+  
+  .login_btn_group button:last-child {
+    background-color: #4169e1;
+    color: #fff;
+  }
+  
+  .login_btn_group button img {
+    height: 24px;
+  }  

@@ -1,0 +1,133 @@
+.historyWrap {
+  width: 80%;
+  margin-left: 20px;
+  margin-top: -20px;
+  min-height: 57vh;
+}
+
+.title {
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.content {
+  border-bottom: 1px solid #ebebeb;
+  padding: 20px 0 24px;
+}
+
+.section {
+  margin-bottom: 30px;
+  width: 85%;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  border: 1px solid #e9e9e9;
+  padding: 10px 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px rgba(143, 143, 143, 0.3);
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.dateInfo {
+  font-size: 14px;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.accommodationName {
+  font-weight: bold;
+}
+
+.roomInfo, .priceInfo {
+  font-size: 14px;
+}
+
+.cancelButton {
+  background-color: #ff5757;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancelButton:hover {
+  background-color: #e04b4b;
+}
+
+.emptyMessage {
+  color: #777;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+.canceledItem {
+  background-color: #e9e9e9;
+}
+
+.canceledItem span {
+  color: #888;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modalButtons {
+  margin-top: 20px;
+}
+
+.modalButtons button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 7px;
+  border: none;
+  background-color: #6a92ee;
+  color: white;
+}
+
+.modalButtons button:last-child {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}

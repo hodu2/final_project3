@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.accommodation-list-container {
+  display: flex;
+  flex-direction: row; /* 좌측 필터와 우측 리스트 나란히 배치 */
+  width: 100%;
+  margin: 0 auto;
+  margin-left: 190px;
+}
+
+.filter-container {
+  width: 14.5%; /* 좌측 필터 너비 */
+  margin-right: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  height: fit-content;
+  margin-top: 60px;
+}
+
+.filter-container h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.filter-options label {
+  color: #555;
+}
+
+.filter-options input[type="radio"] {
+  margin-right: 5px;
+  margin: 10px;
+}
+
+.accommodation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 반응형 그리드 */
+  gap: 50px; /* 카드 간 간격 */
+}
+
+.main-content {
+  width: 62%; /* 우측 리스트 영역 너비 */
+}
+
+.accommodation-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.accommodation-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.accommodation-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.accommodation-details {
+  padding: 20px;
+  text-align: center;
+}
+
+.accommodation-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.accommodation-type,
+.accommodation-address {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.accommodation-rating {
+  font-size: 14px;
+  color: #4169e1;
+  margin-bottom: 10px;
+}
+
+.accommodation-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e53935;
+  margin-top: 10px;
+}
+
+/* 가격 슬라이더 스타일 */
+.rc-slider {
+  margin-top: 10px;
+}
+
+.rc-slider-rail {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+}
+
+.rc-slider-track {
+  height: 8px;
+  background: #4169e1;
+  border-radius: 4px;
+}
+
+.rc-slider-handle {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid #4169e1;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px; /* 중앙 정렬 */
+}
+
+.rc-slider-handle:hover {
+  border-color: #4169e1;
+}
+
+.rc-slider-handle:focus {
+  box-shadow: 0 0 0 5px rgba(255, 152, 0, 0.2);
+}
+
+.rc-slider-handle:active {
+  border-color: #4169e1;
+}
+
+/* 가격 범위 텍스트 스타일 */
+.filter-container p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.sort-filter {
+  float: right;
+  margin-right: -40px;
+}
+
+#sort {
+  font-family: 'GmarketSansMedium';
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  font-size: 15px;
+  margin: 0 auto;
+}
+

@@ -1,0 +1,28 @@
+.location-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* 부모 요소에 맞게 채우기 */
+}
+
+.location-input input {
+  width: 100%; /* 입력 창 너비를 부모 요소에 맞게 설정 */
+  padding: 15px 50px; /* 높이를 키우려면 패딩을 늘리기 */
+  border: 1px solid #ddd;
+  border-radius: 25px; /* 모서리를 둥글게 */
+  font-size: 16px; /* 글씨 크기를 키움 */
+  color: #555;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-input input::placeholder {
+  color: #aaa;
+}
+
+.location-input .search-icon {
+  position: absolute;
+  left: 16px; /* 아이콘 위치를 패딩에 맞게 조정 */
+  font-size: 20px; /* 아이콘 크기를 키움 */
+  color: #aaa;
+}
