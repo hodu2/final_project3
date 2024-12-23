@@ -146,15 +146,16 @@ CREATE TABLE USERS (
     email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(20),
     social_id VARCHAR(255),
-    social_provider VARCHAR(50),
+    social_provider VARCHAR(50)
 );
+
+
+SELECT * FROM USERS u;
 
 CREATE SEQUENCE user_id_seq
 START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
-
-SELECT * FROM USERS u;
 
 ------------------------------- RESERVATION 테이블 -----------------------
 
@@ -180,9 +181,12 @@ START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
 
+DROP SEQUENCE resv_id_seq;
 
 
 SELECT * FROM RESERVATION r ;
+
+
 
 
 ---------------------------- REVIEW 테이블 ----------------------------------
@@ -190,7 +194,7 @@ SELECT * FROM RESERVATION r ;
 CREATE TABLE REVIEW (
     review_id INT PRIMARY KEY,                -- 리뷰 ID
     user_id INT NOT NULL,                     -- 회원 ID (FK)
-    resv_id INT NOT NULL,                              -- 예약 ID (FK)
+    resv_id INT NULL,                              -- 예약 ID (FK)
     accom_id INT NOT NULL,                             -- 숙소 ID (FK)
     rating NUMBER(2,1) CHECK (rating BETWEEN 1 AND 5), -- 평점
     review_text VARCHAR2(1000),               -- 리뷰 내용
@@ -242,6 +246,10 @@ START WITH 1 -- 시작 값
 INCREMENT BY 1 -- 증가 값
 ;
 
+
+
+DROP TRIGGER trg_update_reservation_status;
+
 SELECT * FROM PAYMENT p ;
 
 
@@ -255,6 +263,8 @@ CREATE TABLE PAYMENT_CANCELLATION (
 );
 
 SELECT * FROM PAYMENT_CANCELLATION pc ;
+
+
 
 --------------------------------------------------- 끝 -------------------------------------------------
 
@@ -270,17 +280,3 @@ SELECT * FROM ROOM_TYPE_PRICE rtp ;
 SELECT * FROM USERS u ;
 SELECT * FROM WISHLIST w ;
 SELECT * FROM REVIEW r;
-
-++드랍 쿼리문
-
-ALTER TABLE PAYMENT
-DROP COLUMN payment_method;
-
-DROP TRIGGER trg_update_reservation_status;
-
-
-
-
-
-
-
