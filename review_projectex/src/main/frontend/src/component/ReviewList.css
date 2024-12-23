@@ -1,0 +1,126 @@
+  /* 리뷰 헤더 */  
+  .css-olperf {
+    margin-right: 8px;
+    fill: #FFD700;
+    margin-bottom: -7px;
+  }
+  
+  .css-1m0qn1y {
+    font-size: 0.9em;
+    color: #666;
+  }  
+
+  /* 리뷰 리스트 */
+  .drop-down select {
+    font-family: 'GmarketSansMedium';
+    padding: 5px;
+    float: right;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
+
+  .review-list p {
+    margin: 0px;
+  }
+  
+  .Written-Date {
+    width: 1500px;
+    text-align: right;
+  }
+
+  .review-img {
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+  }
+
+  .review-button {
+    display: flex;
+  }
+
+  .review-button button {
+    font-family: 'GmarketSansMedium';
+    color: #fff;
+    background-color: #4169e1;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+  }
+
+  .review-button button:hover {
+    background-color: #6a92ee;
+  }
+
+  /* 리뷰 폼 */
+  .review-form {
+    border: 1px solid #ccc;
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(143, 143, 143, 0.3);
+    
+  }
+
+  .review-form h2 {
+    text-align: left;
+    padding-left: 90px;
+  }
+
+  .review-write {
+    padding-left: 90px;
+  }
+
+  .review-write textarea {
+    font-family: 'GmarketSansMedium';
+    width: 90%;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .review-rating {
+    padding-left: 90px;
+  }
+
+  .review-rating select {
+    font-family: 'GmarketSansMedium';
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .write-date {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 90px;
+  }
+
+  .write-btn {
+    padding-left: 90px;
+  }
+
+  .write-btn button{
+    font-family: 'GmarketSansMedium';
+    background-color: #4169e1;
+    color:  #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 11%;
+  }
+
+  .write-btn button:hover {
+    background-color: #6a92ee;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .review-margin {
+    margin-left: -40px
+  }
