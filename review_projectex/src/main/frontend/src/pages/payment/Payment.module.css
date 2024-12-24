@@ -1,13 +1,14 @@
 @font-face {
-  font-family: 'GmarketSansMedium' !important;
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-family: "GmarketSansMedium" !important;
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
-*{
+* {
   background-color: transparent;
-  font-family: 'GmarketSansMedium';
+  font-family: "GmarketSansMedium";
 }
 
 /* 예약 확인 및 결제 헤드라인 */
@@ -25,7 +26,7 @@
 
 /* 더블 섹션 */
 .section_double {
-	display: flex;
+  display: flex;
   width: 80%;
   margin: auto;
 }
@@ -33,25 +34,24 @@
 
 /* 더블 섹션 왼쪽*/
 .section_double_left {
-	width: 68%;
+  width: 68%;
   margin-top: -30px;
 }
 /* 더블 섹션 왼쪽*/
 
 /* 더블 섹션 오른쪽*/
-.section_double_right { 
-	width: 35%;
-  
+.section_double_right {
+  width: 35%;
 }
 
 .section_sticky {
   position: sticky;
-	top: 20px;
+  top: 20px;
 }
 /* 더블 섹션 오른쪽*/
 
 /* 섹션 타이틀 */
-.title{
+.title {
   font-size: 18px;
   font-weight: 700;
   padding: 16px 0;
@@ -59,22 +59,21 @@
 /* 섹션 타이틀 */
 
 /* 섹션 구분 라인 */
-.divider{
+.divider {
   background-color: #ebebeb;
   height: 1px;
 }
 /* 섹션 구분 라인 */
 
 /* 예약자 정보 섹션 */
-.section_resv_check{
+.section_resv_check {
   padding: 20px 0;
   width: 360px;
 }
 
-.box_user{
+.box_user {
   padding: 10px;
 }
-
 
 .label {
   align-items: center;
@@ -92,6 +91,9 @@
 /* 예약자 정보 섹션 */
 
 /* 결제 수단 섹션 */
+.section_payment {
+  margin-right: 5%;
+}
 
 /* 숙소 정보 섹션*/
 #accom_title {
@@ -112,7 +114,7 @@
   object-fit: cover;
 }
 
-.section_accom_info{
+.section_accom_info {
   border: 1px solid #ebebeb;
   border-radius: 10px;
   margin-bottom: 16px;
@@ -120,7 +122,7 @@
   padding-right: 24px;
 }
 
-table{
+table {
   margin-top: 16px;
   padding: 0 0 12px;
 }
@@ -202,10 +204,6 @@ table{
   background-color: #003f7f;
 }
 /* 결제 정보 섹션 */
-
-
-
-
 
 /* 토스페이 */
 
@@ -339,8 +337,7 @@ html {
   text-decoration: none;
   border-radius: 7px;
   padding: 11px 16px;
-  width:100%;
-  
+  width: 100%;
 }
 
 .button2 {
@@ -377,7 +374,6 @@ input:disabled {
   opacity: 80%;
   cursor: not-allowed;
 }
-
 
 .color--grey800 {
   color: #333d4b;

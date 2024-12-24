@@ -25,7 +25,6 @@ export default function PaymentCheckoutPage() {
   const [ready, setReady] = useState(false);
   const [widgets, setWidgets] = useState(null);
 
-  const maxGuests = sessionStorage.getItem("maxGuests");
   const userId = sessionStorage.getItem("userId");
   const checkIn = new Date(sessionStorage.getItem("checkIn"));
   const checkOut = new Date(sessionStorage.getItem("checkOut"));
@@ -151,8 +150,8 @@ export default function PaymentCheckoutPage() {
                 </label>
               </div>
             </div>
-            <div className={styles.divider}></div>
             <div className={styles.section_payment}>
+              <div className={styles.divider}></div>
               <div className={styles.title} id="payment-title">
                 결제 수단
               </div>
@@ -214,10 +213,13 @@ export default function PaymentCheckoutPage() {
                     <ul className={styles.section_amount_content}>
                       <li>
                         <span className="accom_price_with_day">
-                          객실 가격({numberOfNights}박)
+                          객실 가격 ({numberOfNights}박)
                         </span>
                         <strong className="price">
-                          {parseInt(sessionStorage.getItem("roomPrice")).toLocaleString()}원
+                          {parseInt(
+                            sessionStorage.getItem("roomPrice")
+                          ).toLocaleString()}
+                          원
                         </strong>
                       </li>
                     </ul>
