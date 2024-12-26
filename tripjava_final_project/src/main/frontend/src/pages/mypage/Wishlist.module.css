@@ -1,0 +1,85 @@
+.wishWrap {
+  min-height: 53vh;
+  margin-left: 20px;
+  margin-top: -15px;
+}
+
+.wishTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.wishlistItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.wishlistItem {
+  width: 30.7%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative; /* 버튼을 우측 상단에 위치시키기 위해 설정 */
+  transition: box-shadow 0.3s;
+}
+
+.wishlistItem:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wishlistItem img {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.wishlistItem h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.wishlistItem p {
+  color: #555;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* 삭제 버튼 스타일 */
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: transparent; /* 기본적으로 투명 상태로 설정 */
+  transition: color 0.3s ease; /* 부드럽게 색이 변화하도록 */
+  position: absolute; /* 버튼을 항목 내에서 절대 위치 */
+  top: 10px; /* 상단 10px */
+  right: 10px; /* 우측 10px */
+  font-size: 20px; /* 버튼 크기 */
+}
+
+/* 삭제 버튼에 마우스를 올렸을 때 색상이 보이도록 */
+.deleteButton:hover {
+  color: red; /* 호버 상태에서 X 아이콘이 빨간색으로 나타남 */
+}
+
+/* 삭제 버튼이 클릭된 상태 (active)일 때 색상이 보이도록 */
+.deleteButton:active {
+  color: darkred; /* 클릭 상태에서 더 어두운 빨간색으로 변경 */
+}
+
+/* 삭제 버튼에 포커스가 있을 때 색상이 보이도록 */
+.deleteButton:focus {
+  outline: none; /* 기본 포커스 outline 제거 */
+  color: red; /* 포커스 상태에서도 빨간색으로 나타냄 */
+}
+
+.emptyMessage {
+  color: #777;
+  font-size: 16px;
+  text-align: center;
+}

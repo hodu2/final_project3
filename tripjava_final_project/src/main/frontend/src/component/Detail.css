@@ -1,0 +1,197 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'GmarketSansMedium';
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.accommodation-detail-page {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* 네비 */
+.menu {
+  list-style: none;
+  display: inline-flex;
+  padding-left: 10px;
+}
+
+.menu li {
+  padding-right: 50px;
+  line-height: 100%;
+}
+
+.menu li:hover {
+  transform: scale(1.1);
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+}
+
+/* 숙소 이미지 */
+.main-img {
+  display: inline-block;
+  margin: 0px 0px 0px 15px;
+}
+
+.main-img1 {
+  width: 50%;
+  float: left;
+  border-radius: 10px;
+  max-height: 510px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+
+.main-imgother {
+  width: 24%;
+  height: 245px;
+  margin-left: 5px;
+  margin-top: 5px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+/* 숙소 정보 */
+.info-wrap {
+  display: flex;
+}
+
+.information {
+  width: 100%;
+}
+
+.accomname {
+float: left;
+width: fit-content;
+}
+
+.detail-container p {
+  max-width: none;
+}
+
+/*찜하기 버튼 */
+.favorite-button {
+all: unset;
+background: none;
+border: none;
+font-size: 24px;
+cursor: pointer;
+color: red;
+margin-left: 20px;
+margin-top: 30px;
+}
+
+.favorite-button:hover {
+transform: scale(1.2);
+}
+
+.favorite-button:focus {
+outline: none; /* 포커스 상태 테두리 제거 */
+}
+
+/* 예약 정보창 */
+.reservation {
+  border: 1px solid #ccc;
+  float: left;
+  padding: 20px;
+  width: 40%;
+  border-radius: 20px;
+  margin: 15px;
+  height: 100%;
+  box-shadow: 1px 1px 10px rgba(143, 143, 143, 0.3);    
+}
+
+.reservation table {
+  border: 1px solid #ccc;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 20px;
+  padding-bottom: 0px;
+}
+
+.reservation table tr td {
+  width: fit-content;
+  padding: 10px 0px;
+}
+
+.reservation table select {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  font-family: 'GmarketSansMedium';
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.in {
+  border-bottom: 1px solid #ccc;
+}
+
+.out {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.confirm {
+  font-family: 'GmarketSansMedium';
+  width: 100%;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  background-color: #4169e1;
+  color: #fff;
+  transition: background-color 0.3s ease; /* 부드러운 색상 전환 추가 */
+}
+
+.confirm:hover {
+  background-color: #6a92ee;
+}
+
+/* 지도 관련 스타일 */
+.location-section {
+  margin-top: 20px; /* 지도 섹션과 다른 요소들이 겹치지 않도록 조정 */
+  width: 100%;
+  position: relative; /* 위치 설정 */
+}
+
+/* 편의시설 */
+.service h3 {
+  margin-bottom: 20px;
+}
+
+.service .service-list {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.service .service-item {
+  display: flex;
+  align-items: center;
+  width: 25%; /* 서비스 항목 크기 조정 */
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.service img {
+  width: 50px;
+  margin-right: 10px;
+}

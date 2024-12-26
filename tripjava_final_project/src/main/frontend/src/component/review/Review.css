@@ -1,0 +1,65 @@
+/* 리뷰페이지 */
+.review {
+    width: 80%;
+    margin: 0 auto;
+}
+.coment button:nth-child(2) {
+    float: right;
+    margin-right: 10px;
+    background-color: #4169e1;
+    color: #fff;
+    width: 100px;
+    height: 50px;
+    padding: 0px;
+}
+.coment button:nth-child(1) {
+    float: right;
+    background-color: #4169e1;
+    color: #fff;
+    height: 50px;
+    padding: 0px 15px;
+}
+
+.coment button:hover {
+    background-color: #6a92ee;
+}
+
+.coment img {
+    display: inline-flex;
+    width: 500px;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+
+/* 리뷰 작성 페이지 */
+.review-write {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.review-write img {
+    width: 500px;
+}
+
+.review-write input {
+    width: 100%;
+    height: 300px;
+}
+
+.review-write button {
+    background-color: #4169e1;
+    color: #fff;
+}
+
+.review-write button:hover {
+    background-color: #6a92ee;
+}
+
+.write-button {
+    text-align: center;
+}
+
+.write-button:nth-child(1) {
+    margin-right: 10px;
+    text-align: center;
+}
